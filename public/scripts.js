@@ -21,7 +21,7 @@ document.getElementById('get-weather-btn').addEventListener('click', async () =>
         // Update the weather-result div with the constructed HTML
         document.getElementById('weather-result').innerHTML = html;
     } catch (err) {
-        document.getElementById('weather-result').innerText = 'Error fetching weather data';
+        document.getElementById('weather-result').innerHTML = '<p style="color: red;">Please input a valid value for the field: City.';
     }
 });
 
@@ -59,6 +59,9 @@ document.getElementById('get-weather-btn').addEventListener('click', async () =>
         const temperature = data.main.temp;
         const humidity = data.main.humidity;
 
+        // Convert temperature from Kelvin to Celsius
+        const temperatureC = (temperatureK - 273.15).toFixed(1); 
+        
         // Prepare data to send to the server
         const payload = {
             city,
